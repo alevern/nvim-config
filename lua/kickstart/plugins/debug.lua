@@ -55,19 +55,20 @@ return {
       desc = 'Debug: Step Out',
     },
     {
-      '<leader>b',
+      '<leader>db',
       function()
         require('dap').toggle_breakpoint()
       end,
       desc = 'Debug: Toggle Breakpoint',
     },
     {
-      '<leader>B',
+      '<leader>dB',
       function()
         require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
       end,
       desc = 'Debug: Set Breakpoint',
     },
+      { '<leader>dr', require('dap').repl.toggle, desc = 'Debug: Toggle REPL' },
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     {
       '<F7>',
@@ -95,8 +96,15 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'js',
       },
     }
+
+    -- dap.adapters.typescript = {
+    --   type = 'executable',
+    --   command = os.getenv 'HOME' .. '/.virtualenvs/tools/bin/python',
+    --   args = { '-m', 'debugpy.adapter' },
+    -- }
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
